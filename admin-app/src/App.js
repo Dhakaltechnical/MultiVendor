@@ -18,6 +18,8 @@ import Addproduct from './pages/Addproduct';
 import Enquiries from './pages/Enquiries';
 import Couponlist from './pages/Couponlist';
 import Addcoupon from './pages/Addcoupon';
+import ViewEnq from './pages/ViewEnq';
+import ViewOrder from './pages/ViewOrder';
 
 function App() {
   return (
@@ -29,9 +31,11 @@ function App() {
         <Route path="/admin" element={<MainLayout />} >
           <Route index element={<Dashboard />}/>
           <Route path="orders" element={<Orders />} />
+          <Route path="order/:id" element={<ViewOrder />} />
           <Route path="customers" element={<Customers />} />
           <Route path="list-color" element={<Colorlist />} />
           <Route path="color" element={<Addcolor />} />
+          <Route path="color/:id" element={<Addcolor />} />
           <Route path="list-category" element={<Categorylist />} />
           <Route path="category" element={<Addcat />} />
           <Route path="category/:id" element={<Addcat />} />
@@ -41,8 +45,10 @@ function App() {
           <Route path="list-product" element={<Productlist />} />
           <Route path="product" element={< Addproduct />} />
           <Route path="enquiries" element={< Enquiries />} />
+          <Route path="enquiries/:id" element={< ViewEnq />} />
           <Route path="coupon-list" element={< Couponlist/>} />
           <Route path="coupon" element={< Addcoupon/>} />
+          <Route path="coupon/:id" element={< Addcoupon/>} />
         </Route>
       </Routes>
     </Router>

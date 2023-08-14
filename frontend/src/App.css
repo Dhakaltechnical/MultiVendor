@@ -689,6 +689,11 @@ margin-bottom: 0px;
 .total-price{
   font-size: 16px;
   color: var(--color-777777);
+  margin-left: 20px;
 }
 
 /* Shipping page ends here */
+.error {
+  color: red;
+  font-size: 12px;
+}

@@ -42,7 +42,7 @@ useEffect(()=>{
             <div className="main-banner-content position-absolute">
               <h4>FASHION IS A POPULAR STYLE</h4>
               <h5>FASHION WEEK</h5>
-              <Link className="button">SHOP NOW</Link>
+              <Link to="/product"  className="button">SHOP NOW</Link>
               
             </div>
           </div>
@@ -56,7 +56,7 @@ useEffect(()=>{
             <div className="small-banner-content position-absolute">
               <h4>BEST SALE</h4>
               <h5>FASHION WEEK</h5>
-              <p>From $999.00 or <br /> $41.62/mo.</p>
+              <p>From Rs 999.00 or <br /> Rs 41.62/mo.</p>
               
             </div>
           </div>
@@ -67,7 +67,7 @@ useEffect(()=>{
             <div className="small-banner-content position-absolute">
               <h4>NEW ARRIVAL</h4>
               <h5>FASHION WEEK</h5>
-              <p>From $999.00 or  <br />$41.62/mo.</p>
+              <p>From Rs 999.00 or  <br />Rs 41.62/mo.</p>
               
             </div>
           </div>
@@ -78,7 +78,7 @@ useEffect(()=>{
             <div className="small-banner-content position-absolute">
               <h4>NEW ARRIVAL</h4>
               <h5>FASHION WEEK</h5>
-              <p>From $999.00 or  <br />$41.62/mo.</p>
+              <p>From Rs 999.00 or  <br />Rs 41.62/mo.</p>
               
             </div>
           </div>
@@ -89,7 +89,7 @@ useEffect(()=>{
             <div className="small-banner-content position-absolute">
               <h4>NEW ARRIVAL</h4>
               <h5>FASHION WEEK</h5>
-              <p>From $999.00 or <br /> $41.62/mo.</p>
+              <p>From Rs 999.00 or <br /> Rs 41.62/mo.</p>
               
             </div>
           </div>
@@ -126,59 +126,31 @@ useEffect(()=>{
           <div className="categories d-flex justify-content-between flex-wrap align-items-center">
                   <div className="d-flex gap align-items-center ">
                     <div>
-                      <h6>Cameras</h6>
-                      <p>10 Items</p>
+                      <h6>Mens</h6>
+                      <p></p>
                     </div>
-                    <img src="images/camera.jpg" alt="camera" />
+                    <img src="images/shirto.jpg" alt="camera" />
                   </div>
                   <div className="d-flex gap align-items-center ">
                     <div>
-                      <h6>Smart Tv</h6>
-                      <p>10 Items</p>
+                      <h6>Womens</h6>
+                      <p></p>
                     </div>
-                    <img src="images/tv.jpg" alt="camera" />
+                    <img src="images/women.jpg" alt="camera" />
                   </div>
                   <div className="d-flex gap align-items-center ">
                     <div>
-                      <h6>Smart Watches</h6>
-                      <p>10 Items</p>
+                      <h6>Beauty</h6>
+                      <p></p>
+                    </div>
+                    <img src="images/lopstick.jpg" alt="camera" />
+                  </div>
+                  <div className="d-flex gap align-items-center ">
+                    <div>
+                      <h6>Accessories</h6>
+                      <p></p>
                     </div>
                     <img src="images/headphone.jpg" alt="camera" />
-                  </div>
-                  <div className="d-flex gap align-items-center ">
-                    <div>
-                      <h6>Cameras</h6>
-                      <p>10 Items</p>
-                    </div>
-                    <img src="images/camera.jpg" alt="camera" />
-                  </div>
-                  <div className="d-flex gap align-items-center ">
-                    <div>
-                      <h6>Cameras</h6>
-                      <p>10 Items</p>
-                    </div>
-                    <img src="images/camera.jpg" alt="camera" />
-                  </div>
-                  <div className="d-flex gap align-items-center ">
-                    <div>
-                      <h6>Smart Tv</h6>
-                      <p>10 Items</p>
-                    </div>
-                    <img src="images/tv.jpg" alt="camera" />
-                  </div>
-                  <div className="d-flex gap align-items-center ">
-                    <div>
-                      <h6>Smart Watches</h6>
-                      <p>10 Items</p>
-                    </div>
-                    <img src="images/headphone.jpg" alt="camera" />
-                  </div>
-                  <div className="d-flex gap align-items-center ">
-                    <div>
-                      <h6>Cameras</h6>
-                      <p>10 Items</p>
-                    </div>
-                    <img src="images/camera.jpg" alt="camera" />
                   </div>
           </div>
         </div>
@@ -214,7 +186,7 @@ useEffect(()=>{
                   width={90}
                 />
                 <img
-                  src={watch2}
+                  src={item?.images[0].url}
                   className="img-fluid mx-auto"
                   alt="product image"
                   width={90}
@@ -241,9 +213,9 @@ useEffect(()=>{
                   <button className="border-0 bg-transparent">
                     <img onClick={()=>navigate("/product/"+item?._id)} src={view} alt="view" />
                   </button>
-                  <button className="border-0 bg-transparent">
+                  {/* <button className="border-0 bg-transparent">
                     <img src={addcart} alt="addcart" />
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
@@ -287,7 +259,7 @@ useEffect(()=>{
                   width={90}
                 />
                 <img
-                  src={watch2}
+                  src={item?.images[0].url}
                   className="img-fluid mx-auto"
                   alt="product image"
                   width={90}
@@ -314,9 +286,9 @@ useEffect(()=>{
                   <button className="border-0 bg-transparent">
                     <img onClick={()=>navigate("/product/"+item?._id)} src={view} alt="view" />
                   </button>
-                  <button className="border-0 bg-transparent">
+                  {/* <button className="border-0 bg-transparent">
                     <img src={addcart} alt="addcart" />
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>

@@ -62,7 +62,7 @@ const Login = () => {
         </h3>
         <p className="text-center">Login to your account to continue </p>
         <div className="error text-center">
-          {message.message == "Rejected" ? "You are not an Admin":""}
+          {message.message == "Rejected" ? "You are not an Vendor":""}
         </div>
         <form action="" onSubmit={formik.handleSubmit}>
           <CustomInput
@@ -91,9 +91,7 @@ const Login = () => {
               <div>{formik.errors.password}</div>
             ) : null}
           </div>
-          <div className="mb-3 text-end">
-            <Link to="forgot-password">Forgot Password</Link>
-          </div>
+          
           <button
             className="border-0 px-3 mt-3 py-2 text-white fw-bold w-100 text-center text-decoration-none"
             style={{

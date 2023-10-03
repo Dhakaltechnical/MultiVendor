@@ -40,11 +40,11 @@ var orderSchema = new mongoose.Schema(
     
    },
    paymentInfo:{
-    stripepayOrderId:{
+    razorpayOrderId:{
       type:String,
     required:true
     },
-    stripepayPaymentId:{
+    razorpayPaymentId:{
       type:String,
     required:true
     }
@@ -75,6 +75,10 @@ var orderSchema = new mongoose.Schema(
    paidAt:{
     type:Date,
     default:Date.now()
+   },
+   month:{
+   type:String,
+   default:new Date().getMonth()
    },
    totalPrice:{
     type:Number,

@@ -2,8 +2,6 @@ import './App.css';
 import {BrowserRouter as Router,  Routes, Route} from "react-router-dom";
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
-import Resetpassword from './pages/Resetpassword';
-import Forgotpassword from './pages/Forgotpassword';
 import MainLayout from './components/MainLayout';
 import Orders from './pages/Orders';
 import Customers from './pages/Customers';
@@ -20,15 +18,15 @@ import Couponlist from './pages/Couponlist';
 import Addcoupon from './pages/Addcoupon';
 import ViewEnq from './pages/ViewEnq';
 import ViewOrder from './pages/ViewOrder';
+import { OpenRoutes } from './routing/OpenRoutes';
+import { PrivateRoutes } from './routing/PrivateRoutes';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/reset-password" element={<Resetpassword />} />
-        <Route path="/forgot-password" element={<Forgotpassword />} />
-        <Route path="/admin" element={<MainLayout />} >
+        <Route path="/" element={<OpenRoutes><Login /></OpenRoutes>} />
+        <Route path="/admin" element={<PrivateRoutes><MainLayout /></PrivateRoutes>} >
           <Route index element={<Dashboard />}/>
           <Route path="orders" element={<Orders />} />
           <Route path="order/:id" element={<ViewOrder />} />

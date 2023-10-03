@@ -70,7 +70,7 @@ const Footer = () => {
               <Link className="text-white py-2 mb-1 ">Women's Fashion</Link>
               <Link className="text-white py-2 mb-1 ">Men's Fashion</Link>
               <Link className="text-white py-2 mb-1 ">Watch</Link>
-              <Link className="text-white py-2 mb-1 ">Headphones</Link>
+              <Link className="text-white py-2 mb-1 ">Accessories</Link>
 
             </div>
             </div> 

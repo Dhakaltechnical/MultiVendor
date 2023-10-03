@@ -72,15 +72,15 @@ const Cart = () => {
                     <div className="cart-col-1 gap-15 d-flex align-items-center">
                       <div className="w-25">
                         <img
-                          src={watch}
-                          className="img-fluid"
+                          width={100} height={100} src={item?.productId?.images[0]?.url}
+                         
                           alt="product image"
                         />
                       </div>
                       <div className="w-75">
-                        <p>{item?.productId.title}</p>
+                        <p>{item?.productId?.title}</p>
                         <p className="d-flex gap-3">
-                          Color:{" "}
+                          Color:
                           <ul className="colors ps-0">
                             <li
                               style={{ backgroundColor: item?.color.title }}
@@ -141,7 +141,7 @@ const Cart = () => {
               {
                 (totalAmount !== null || totalAmount !== 0) &&
                 <div className="d-flex flex-column align-items-end">
-                <h4>SubTotal: Rs {totalAmount}</h4>
+                <h4>SubTotal: Rs {totalAmount?totalAmount:"0"}</h4>
                 <p>Taxes and shipping calculated at checkout</p>
                 <Link to="/checkout" className="button">
                   Checkout

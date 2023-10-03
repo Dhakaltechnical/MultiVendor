@@ -23,6 +23,18 @@ export const getProducts = createAsyncThunk(
       }
     }
   );
+
+
+  export const deleteAProduct = createAsyncThunk(
+    "coupon/delete-coupon",
+    async (id,thunkAPI) => {
+      try {
+        return await productService.deleteProduct(id);
+      } catch (error) {
+        return thunkAPI.rejectWithValue(error);
+      }
+    }
+  );
   
   export const resetState = createAction("Reset_all");
 
@@ -67,6 +79,22 @@ export const productSlice = createSlice({
           state.isSuccess = false;
           state.message = action.error;
         })
+        .addCase(deleteAProduct.pending,(state)=>{
+          state.isLoading = true;
+      }).addCase(deleteAProduct.fulfilled,(state,action)=>{
+          state.isLoading = false;
+          state.isError = false;
+          state.isSuccess = true;
+          state.deleteProduct = action.payload;
+      })
+      .addCase(deleteAProduct.rejected,(state,action)=>{
+          state.isLoading = false;
+          state.isError = true;
+          state.isSuccess = false;
+         state.message = action.error;
+      })
+
+
         .addCase(resetState, () => initialState);
         
     },

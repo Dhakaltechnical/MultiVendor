@@ -1,5 +1,6 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
+import { useNavigate} from "react-router-dom";
 import BreadCrumb from "../components/BreadCrumb";
 import { Link } from "react-router-dom";
 import Meta from "../components/Meta";
@@ -8,6 +9,7 @@ import CustomInput from "../components/CustomInput";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { registerUser } from "../features/user/userSlice";
+import { useEffect } from "react";
 
 const signUpSchema = yup.object({
   firstname: yup.string().required("First Name is required"),
@@ -22,6 +24,7 @@ const signUpSchema = yup.object({
 
 const Signup = () => {
   const dispatch = useDispatch();
+  const navigate =  useNavigate()
   const formik = useFormik({
     initialValues: {
       firstname: "",
@@ -35,7 +38,7 @@ const Signup = () => {
       dispatch(registerUser(values));
     },
   });
-
+  
   return (
     <>
       <Meta title={"Sign Up"} />

@@ -4,6 +4,7 @@ import {
   AiOutlineUser,
   AiOutlineShoppingCart,
   AiOutlineBgColors,
+  AiOutlineLogout
 } from "react-icons/ai";
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -37,7 +38,10 @@ const MainLayout = () => {
           mode="inline"
           defaultSelectedKeys={[""]}
           onClick={({ key }) => {
-            if (key == "signout") {
+            if (key === "signout") {
+              localStorage.clear()
+              window.location.reload()
+             
             } else {
               navigate(key);
             }
@@ -47,11 +51,6 @@ const MainLayout = () => {
               key: "",
               icon: <AiOutlineDashboard className="fs-4" />,
               label: "Dashboard",
-            },
-            {
-              key: "customers",
-              icon: <AiOutlineUser className="fs-4" />,
-              label: "Customers",
             },
             {
               key: "Catalog",
@@ -123,10 +122,10 @@ const MainLayout = () => {
               ],
             },
             {
-              key:"enquiries",
-              icon:<FaClipboardList className="fs-4"/>,
-              label:"Enquiries"
-            }
+              key:"signout",
+              icon:<AiOutlineLogout className="fs-4"/>,
+              label:"Sign out"
+            },
           ]}
         />
       </Sider>
@@ -146,21 +145,9 @@ const MainLayout = () => {
             }
           )}
           <div className="d-flex gap-4 align-items-center">
-            <div className="position-relative">
-              <IoIosNotifications className="fs-4" />
-              <span className="badge bg-primary rounded-circle p-1 position-absolute">
-                3
-              </span>
-            </div>
+           
             <div className="d-flex gap-3 align-items-center dropdown">
-              <div>
-                <img
-                  width={32}
-                  height={32}
-                  src="https://stroyka-admin.html.themeforest.scompiler.ru/variants/ltr/images/customers/customer-4-64x64.jpg"
-                  alt=""
-                />
-              </div>
+              
               <div 
               role="button"
               id="dropdownMenuLink"

@@ -10,7 +10,7 @@ import ProductCard from "../components/ProductCard";
 import Container from "../components/Container";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAProduct } from "../features/products/productSlice";
+import { addRating, getAProduct, getAllProducts } from "../features/products/productSlice";
 import { toast } from "react-toastify";
 import { addProdToCart, getUserCart } from "../features/user/userSlice";
 
@@ -23,12 +23,14 @@ const SingleProduct = () => {
   const navigate =useNavigate();
   const getProductId = location.pathname.split("/")[2];
   const dispatch = useDispatch();
-  const productState = useSelector(state => state.product.singleproduct)
-  const cartState = useSelector(state=>state.auth.cartProducts)
+  const productState = useSelector(state => state?.product?.singleproduct)
+  const productsState = useSelector(state => state?.product?.product)
+  const cartState = useSelector(state=>state?.auth?.cartProducts)
   console.log(productState);
   useEffect(() => {
     dispatch(getAProduct(getProductId))
     dispatch(getUserCart())
+    dispatch(getAllProducts())
   }, [])
   useEffect(()=>{
   for (let index = 0; index < cartState?.length; index++) {
@@ -57,11 +59,42 @@ const SingleProduct = () => {
   };
 
   const [orderedProduct, setorderedProduct] = useState(true);
+  
+  const [popularProduct,setPopularProduct]=useState([])
+  useEffect(()=>{
+    let data = []
+    for (let index = 0; index < productsState.length; index++) {
+     const element = productsState[index];
+     if(element.tags==='popular'){
+      data.push(element)
+     }
+     setPopularProduct(data)
+    }
+     },[productState])
+     console.log(popularProduct);
+     
+ const [star,setStar]= useState(null)
+ const [comment,setComment] = useState(null)
+ const addRatingToProduct = ()=>{
+  if(star=== null){
+    toast.error("Please add star rating")
+    return false
+  }else if(comment===null){
+    toast.error("Please Write Review About the Product.")
+    return false
+  }else{
+    dispatch(addRating({star:star,comment:comment,prodId:getProductId}))
+   setTimeout(() => {
+    dispatch(getAProduct(getProductId))
+   }, 100);
+  }
+ return false
+ }
 
-  return (
+  return ( 
     <>
       <Meta title={" Product Name"} />
-      <BreadCrumb title=" Product Name" />
+      <BreadCrumb title={productState?.title} />
       <Container class1="main-product-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-6">
@@ -102,10 +135,6 @@ const SingleProduct = () => {
                 </a>
               </div>
               <div className="border-bottom py-3">
-                <div className="d-flex gap-10 align-items-center my-2">
-                  <h3 className="product-heading">Type:</h3>
-                  <p className="product-data">Watch</p>
-                </div>
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Brand:</h3>
                   <p className="product-data">{productState?.brand}</p>
@@ -233,7 +262,7 @@ const SingleProduct = () => {
                       edit={false}
                       activeColor="#ffd700"
                     />
-                    <p className="mb-0">Based on 2 Reviews</p>
+                   
                   </div>
                 </div>
                 {orderedProduct && (
@@ -246,7 +275,6 @@ const SingleProduct = () => {
               </div>
               <div className="review-form py-4">
                 <h4>Write a Review</h4>
-                <form action="" className="d-flex flex-column gap-15">
                   <div>
                     <ReactStars
                       count={5}
@@ -254,6 +282,9 @@ const SingleProduct = () => {
                       value={4}
                       edit={true}
                       activeColor="#ffd700"
+                      onChange={(e)=>{
+                        setStar(e)
+                      }}
                     />
                   </div>
 
@@ -265,27 +296,36 @@ const SingleProduct = () => {
                       cols="30"
                       rows="4"
                       placeholder="Comments"
+                      onChange={(e)=>{
+                        setComment(e.target.value)
+                      }}
                     ></textarea>
                   </div>
-                  <div className="d-flex justify-content-end">
-                    <button className="button border-0">Submit Review</button>
+                  <div className="d-flex justify-content-end mt-3">
+                    <button onClick={addRatingToProduct} className="button border-0" type="button">Submit Review</button>
                   </div>
-                </form>
+                
               </div>
               <div className="reviews mt-4">
-                <div className="review">
+                {
+                  productState && productState.ratings?.map((item,index)=>{
+                    return(
+                      <div key={index} className="review">
                   <div className="d-flex gap-10 align-items-center">
-                    <h6 className="mb-0">Abisekh</h6>
                     <ReactStars
                       count={5}
                       size={24}
-                      value={4}
+                      value={item?.star}
                       edit={false}
                       activeColor="#ffd700"
+                     
                     />
                   </div>
-                  <p className="mt-3"> Its a good products</p>
+                  <p className="mt-3"> {item?.comment}</p>
                 </div>
+                    )
+                  })
+                }
               </div>
             </div>
           </div>
@@ -298,7 +338,7 @@ const SingleProduct = () => {
           </div>
         </div>
         <div className="row">
-          <ProductCard />
+          <ProductCard data={popularProduct} />
         </div>
       </Container>
     </>
